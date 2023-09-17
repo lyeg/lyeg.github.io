@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高二(9)班</title>
+    <style>
+        body {
+            background-color: #323232;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #1c1c1c;
+            z-index: 99;
+        }
+
+        .header .class-name {
+            display: block;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+        }
+
+        .content {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .box {
+            background-color: #292929;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        label {
+            display: inline-block;
+            width: 11em;
+        }
+
+        .members {
+            background-color: #292929;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+
+        .members h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .name-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .name {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            width: 120px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .runtime {
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <span class="class-name">Class9</span>
+    </div>
+    <div class="content">
+        <div class="box">
+            <h1>高二(9)班</h1>
+            <ul>
+                <li><label>学校：龙游第二高级中学</li>
+                <li><label>班级：高二(9)班</li>
+                <li><label>学科：语数英物化地</li>
+                <li><label>班歌：夜空中最亮的星</li>
+                <li><label>我们已经相遇:</li>
+                <li><span class="runtime"></span></li>
+            </ul>
+        </div>
+        <div class="members">
+            <h2>成员(按拼音排名，颜色随机)</h2>
+            <div class="name-list"></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 定义颜色数组
+    const colors = ['#FFB6C1', '#87CEFA', '#00FA9A', '#7FFFD4', '#FFA07A', '#AFEEEE', '#00CED1', '#4169E1', '#FFA500', '#F08080'];
+
+    // 初始化运行时间
+    let startTime = new Date("2023-09-01T10:00:00");
+
+    // 获取名字列表的元素
+    const nameList = document.querySelector('.name-list');
+    // 获取运行时间的元素
+    const runtime = document.querySelector('.runtime');
+
+    // 定义一个函数用于创建名字元素
+    function createName(name) {
+        const nameElement = document.createElement('div');
+        nameElement.classList.add('name');
+        nameElement.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        nameElement.style.fontSize = Math.floor(Math.random() * (26 - 18) + 18) + 'px';
+        nameElement.style.width = Math.floor(Math.random() * (140 - 80) + 80) + 'px';
+        nameElement.style.height = Math.floor(Math.random() * (80 - 40) + 40) + 'px';
+        nameElement.style.color = '#fff';
+        nameElement.textContent = name;
+        return nameElement;
+    }
+
+    // 定义一个数组，保存所有名字
+    const names = [
+        '卜辉成', '曹棋凯', '陈键', '邓顺侦', '丁帅', '傅明宇', '傅强', '黄嘉诚', '胡宇航', '姜梦圆', '金祺磊', '蓝奋功', '蓝浩洋', '林家辉',
+        '刘硕豪', '李青郁', '李研', '李泽诚', '楼阳', '吕程跃', '吕俊萌', '马煜轩', '欧阳春谐', '潘慧丽', '邱子腾', '任家睿', '邵晨昊',
+        '盛若云', '童俊豪', '王顺意', '汪杨涛', '汪紫翎', '夏欣宇', '徐平辉', '徐逸谐', '许子睿', '杨勤', '叶梓轩', '阴泽锐', '张思涵',
+        '张彦', '詹檠', '周恩琪', '周天赋', '祝明锐', '祝毅航'
+    ];
+
+    // 每个名字创建一个元素，并添加到名字列表中
+    names.forEach((name) => {
+        const nameElement = createName(name);
+        nameList.appendChild(nameElement);
+    });
+
+    // 更新运行时间
+    function updateTime() {
+        const nowTime = new Date();
+        const diffTime = Math.floor((nowTime - startTime) / 1000);
+        const days = Math.floor(diffTime / (3600 * 24));
+        const hours = Math.floor((diffTime - days * 3600 * 24) / 3600);
+        const minutes = Math.floor((diffTime - days * 3600 * 24 - hours * 3600) / 60);
+        const seconds = diffTime - days * 3600 * 24 - hours * 3600 - minutes * 60;
+        runtime.textContent = `${days}天${hours}小时${minutes}分${seconds}秒`;
+    }
+
+    setInterval(updateTime, 1000);
+</script>
+
+</html>
